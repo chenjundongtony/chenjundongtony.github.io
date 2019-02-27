@@ -244,6 +244,332 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenjundong.cn/2019/02/27/前端如何优化网站性能/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tony">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tony">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/02/27/前端如何优化网站性能/" itemprop="url">前端如何优化网站性能</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-27T16:07:46+08:00">
+                2019-02-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/02/27/前端如何优化网站性能/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/02/27/前端如何优化网站性能/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="闲谈从前端层面如何优化网站性能"><a href="#闲谈从前端层面如何优化网站性能" class="headerlink" title="闲谈从前端层面如何优化网站性能"></a>闲谈从前端层面如何优化网站性能</h2><ol>
+<li><p>减少HTTP请求</p>
+<p> 在浏览器与服务器进行通信时，主要是通过 HTTP 进行通信。浏览器与服务器需要经过三次握手，每次握手需要花费大量时间。而且不同浏览器对资源文件并发请求数量有限（不同浏览器允许并发数），一旦 HTTP 请求数量达到一定数量，资源请求就存在等待状态，这是很致命的，因此减少 HTTP 的请求数量可以很大程度上对网站性能进行优化。</p>
+<p> <strong>CSS Sprites</strong></p>
+<p> 国内俗称CSS精灵，这是将多张图片合并成一张图片达到减少HTTP请求的一种解决方案，可以通过CSS的background属性来访问图片内容。这种方案同时还可以减少图片总字节数。</p>
+<p> <strong>合并 CSS 和 JS 文件</strong></p>
+<p> 现在前端有很多工程化打包工具，如：grunt、gulp、webpack等。为了减少 HTTP 请求数量，可以通过这些工具再发布前将多个CSS或者多个JS合并成一个文件。</p>
+<p> <strong>采用 lazyLoad</strong></p>
+<p> 俗称懒加载，可以控制网页上的内容在一开始无需加载，不需要发请求，等到用户操作真正需要的时候立即加载出内容。这样就控制了网页资源一次性请求数量。</p>
+</li>
+<li><p>控制资源文件加载优先级</p>
+<p> 浏览器在加载HTML内容时，是将HTML内容从上至下依次解析，解析到link或者script标签就会加载href或者src对应链接内容，为了第一时间展示页面给用户，就需要将CSS提前加载，不要受 JS 加载影响。所以一般情况下，都是CSS在头部，JS在底部。</p>
+</li>
+<li><p>利用浏览器缓存</p>
+<p> 浏览器缓存是将网络资源存储在本地，等到下次请求该资源时，如果资源已经存在就不需要到服务器再次请求资源，直接在本地读取资源。</p>
+</li>
+<li><p>减少重排（Reflow）</p>
+<p> 基本原理：重排是DOM的变化影响到了元素的几何属性（宽和高），浏览器会重新计算元素的几何属性，会使渲染树中受到影响的部分失效，浏览器会验证 DOM 树上的所有其它结点的visibility属性，这也是Reflow低效的原因。如果Reflow的过于频繁，CPU使用率就会急剧上升。<br> 减少Reflow，如果需要在DOM操作时添加样式，尽量使用 增加class属性，而不是通过style操作样式。</p>
+</li>
+<li><p>减少 DOM 操作</p>
+<p> <em>查找元素的优化
+ </em>改变DOM，包括添加，修改，删除DOM<br> <em>改变DOM的样式类等
+ </em>批量修改DOM<br> <em>减少iframe标签的使用
+ </em>样式放在header中，脚本放在关闭标签之前</p>
+</li>
+<li><p>使用iconfont代替图标</p>
+<p> <a href="https://www.iconfont.cn" target="_blank" rel="noopener">https://www.iconfont.cn</a></p>
+</li>
+</ol>
+<h2 id="网页从输入网址到渲染完成经历了哪些过程？"><a href="#网页从输入网址到渲染完成经历了哪些过程？" class="headerlink" title="网页从输入网址到渲染完成经历了哪些过程？"></a>网页从输入网址到渲染完成经历了哪些过程？</h2><ol>
+<li>输入网址；</li>
+<li>发送到DNS服务器，并获取域名对应的web服务器对应的ip地址；</li>
+<li>与web服务器建立TCP连接；</li>
+<li>浏览器向web服务器发送http请求；</li>
+<li>web服务器响应请求，并返回指定url的数据（或错误信息，或重定向的新的url地址）；</li>
+<li>浏览器下载web服务器返回的数据及解析html源文件；</li>
+<li>生成DOM树，解析css和js，渲染页面，直至显示完成；</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenjundong.cn/2019/02/27/常见的vue.js面试题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tony">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tony">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/02/27/常见的vue.js面试题/" itemprop="url">常见的vue.js面试题</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-27T13:02:28+08:00">
+                2019-02-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/02/27/常见的vue.js面试题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/02/27/常见的vue.js面试题/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="常见的vue-js面试题"><a href="#常见的vue-js面试题" class="headerlink" title="常见的vue.js面试题"></a>常见的vue.js面试题</h2><ol>
+<li><p>谈谈对MVVM开发模式的理解</p>
+<p> MVVM分为Model、View、ViewModel三者。</p>
+<pre><code>Model：代表数据模型，数据和业务逻辑都在Model层中定义；
+View：代表UI视图，负责数据的展示；
+ViewModel：负责监听Model中数据的改变并且控制视图的更新，处理用户交互操作；
+</code></pre><p> Model和View并无直接关联，而是通过ViewModel来进行联系的，Model和ViewModel之间有着双向数据绑定的联系。因此当Model中的数据改变时会触发View层的刷新，View中由于用户交互操作而改变的数据也会在Model中同步。</p>
+<p> 这种模式实现了Model和View的数据自动同步，因此开发者只需要专注对数据的维护操作即可，而不需要自己操作dom。</p>
+</li>
+<li><p>vue有哪些指令？</p>
+<p> v-html、v-show、v-if、v-for等等。</p>
+</li>
+<li><p>v-if 和 v-show 有什么区别？<br> 在 block 和 none 来回切换；而v-if会控制这个 DOM 节点的存在与否。当我们需要经常切换某个元素的显示/隐藏时，使用v-show会更加节省性能上的开销；当只需要一次显示或隐藏时，使用v-if更加合理。</p>
+</li>
+<li><p>简述Vue的响应式原理</p>
+<p> 当一个Vue实例创建时，vue会遍历data选项的属性，用 Object.defineProperty 将它们转为getter/setter并且在内部追踪相关依赖，在属性被访问和修改时通知变化。 每个组件实例都有相应的watcher程序实例，它会在组件渲染的过程中把属性记录为依赖，之后当依赖项的setter被调用时，会通知watcher重新计算，从而致使它关联的组件得以更新。</p>
+</li>
+<li><p>Vue.js组件间通信中，如何在组件内部实现一个双向数据绑定？</p>
+<p> 假设有一个输入框组件，用户输入时，同步父组件页面中的数据。</p>
+<p> 具体思路：父组件通过props传值给子组件，子组件通过 $emit 来通知父组件修改相应的props值，具体实现如下：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">import Vue from &apos;vue&apos;</span><br><span class="line">const component = &#123;</span><br><span class="line">    props: [</span><br><span class="line">        &apos;value&apos;</span><br><span class="line">    ],</span><br><span class="line">    template: `</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;input type=&quot;text&quot; @input=&quot;handleInput&quot; :value=&quot;value&quot;&gt;</span><br><span class="line">        &lt;/div&gt;`,</span><br><span class="line">    data () &#123;</span><br><span class="line">        return&#123;&#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">        handleInput (e) &#123;</span><br><span class="line">            this.$emit(&apos;input&apos;, e.target.value)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">new Vue(&#123;</span><br><span class="line">    components: &#123;</span><br><span class="line">        CompOne: component</span><br><span class="line">    &#125;,</span><br><span class="line">    el: </span><br><span class="line">        &apos;#root&apos;,</span><br><span class="line">    template: </span><br><span class="line">    `&lt;div&gt;</span><br><span class="line">        &lt;comp-one :value1=&quot;value&quot; @input=&quot; value = arguments[0]&quot;&gt;&lt;/comp-one&gt;</span><br><span class="line">    &lt;/div&gt;`,</span><br><span class="line">    data () &#123;</span><br><span class="line">        return&#123;</span><br><span class="line">            value: &apos;123&apos;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p> 可以看到，当输入数据时，父子组件中的数据是同步改变的<br> 我们在父组件中做了两件事，一是给子组件传入props，二是监听input事件并同步自己的value属性。那么这两步操作能否再精简一下呢？答案是可以的，你只需要修改父组件：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">template: `</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;!--&lt;comp-one :value1=&quot;value&quot; @input=&quot;value = arguments[0]&quot;&gt;&lt;/comp-one&gt;--&gt;</span><br><span class="line">            &lt;comp-one v-model=&quot;value&quot;&gt;&lt;/comp-one&gt;</span><br><span class="line">    &lt;/div&gt;`</span><br></pre></td></tr></table></figure>
+<p> v-model 实际上会帮我们完成上面的两步操作。</p>
+</li>
+<li><p>delete和Vue.delete删除数组的区别</p>
+<p> delete只是被删除的元素变成了 empty/undefined 其他的元素的键值还是不变。</p>
+<p> Vue.delete 直接删除了数组 改变了数组的键值。</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.chenjundong.cn/2019/02/15/hexo-博客迁移/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1398,322 +1724,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.chenjundong.cn/2019/01/07/js-数据类型/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Tony">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Tony">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/07/js-数据类型/" itemprop="url">js 隐式转换&强制转换</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-07T14:26:17+08:00">
-                2019-01-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/01/07/js-数据类型/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/01/07/js-数据类型/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="js-数据类型分类"><a href="#js-数据类型分类" class="headerlink" title="js 数据类型分类"></a>js 数据类型分类</h4><p>js数据类型分为原始类型 和 引用类型，原始类型也被称为值类型</p>
-<h2 id="值类型"><a href="#值类型" class="headerlink" title="值类型"></a>值类型</h2><p>字符串(String)、数字(Number)、布尔(Boolean)、空(Null)、未定义(Undefined)</p>
-<h2 id="引用数据类型"><a href="#引用数据类型" class="headerlink" title="引用数据类型"></a>引用数据类型</h2><font color="red" style="background-color: #EAEAEA;">对象(Object)、数组(Array)、函数(Function)</font>
-
-<h4 id="强制转换"><a href="#强制转换" class="headerlink" title="强制转换"></a>强制转换</h4><p>① <font color="red">Number()</font>  // 强制转换为nubmer<br>② <font color="red">String()</font>  // 强制转换为string<br>③ <font color="red">Boolean()</font> // 强制转换为boolean</p>
-<h4 id="隐式转换"><a href="#隐式转换" class="headerlink" title="隐式转换"></a>隐式转换</h4><p>JavaScript的数据类型分为六种：<br>分别为null,undefined,boolean,string,number,object<br>object是引用类型，其它的五种是基本类型或者是原始类型<br>我们可以用typeof方法打印来某个是属于哪个类型</p>
-<p>EG:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span>(<span class="string">'123'</span>))  <span class="comment">// 输出string</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span>(<span class="number">123</span>))    <span class="comment">// 输出number</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span>(<span class="literal">false</span>))  <span class="comment">// 输出boolean</span></span><br></pre></td></tr></table></figure></p>
-<h4 id="运算规则"><a href="#运算规则" class="headerlink" title="运算规则"></a>运算规则</h4><p>① <font color="red"> + </font> 号 字符串与数字拼接  转为string<br>② <fnot color="red"> + </fnot> 号 字符串与非数字拼接 转为string<br>③ <font color="red"> - </font> 号 字符串与数字拼接  转为number<br>④ <font color="red"> - </font> 号 字符串与非数字拼接 转为 number</p>
-<p>⑤ <font color="red"> -  </font>  与非纯数字拼接 返回 NaN</p>
-<h4 id="运算"><a href="#运算" class="headerlink" title="== 运算"></a>== 运算</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log( <span class="literal">null</span> == <span class="literal">undefined</span> )  <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log( <span class="literal">null</span> == <span class="number">0</span> )  <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log( <span class="literal">false</span> == <span class="number">0</span> )  <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log( <span class="literal">null</span> == <span class="literal">false</span> ) <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log( <span class="literal">undefined</span> == <span class="literal">false</span> ) <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log( <span class="literal">NaN</span> == <span class="literal">NaN</span> ) <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log( <span class="literal">undefined</span> == <span class="number">0</span> ) <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.chenjundong.cn/2019/01/03/mysql建库建表/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Tony">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Tony">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/03/mysql建库建表/" itemprop="url">mysql建库建表</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-03T16:59:08+08:00">
-                2019-01-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/01/03/mysql建库建表/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/01/03/mysql建库建表/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p> 数据库（Database）是按照数据结构来组织、存储和管理数据的仓库，<br>每个数据库都有一个或多个不同的API用于创建，访问，管理，搜索和复制所保存的数据。</p>
-<p><font color="red">mysql</font> 数据库具有以下特点：</p>
-<ol>
-<li>数据以表格的形式出现</li>
-<li>每行为各种记录名称</li>
-<li>每列为记录名称所对应的数据域</li>
-<li>许多的行和列组成一张表单</li>
-<li>若干的表单组成database</li>
-</ol>
-<h4 id="创建完整数据库"><a href="#创建完整数据库" class="headerlink" title="创建完整数据库"></a>创建完整数据库</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 设置字符编码</span><br><span class="line">SET NAMES UTF8;</span><br><span class="line"># 如果数据库已经存在 丢弃</span><br><span class="line">DROP DATABASE IF EXISTS 库名;</span><br><span class="line"># 创建数据库 规定字符集</span><br><span class="line">CREATE DATABASE 数据库名 CHARSET = UTF8;</span><br><span class="line"># 使用此数据库</span><br><span class="line">USE 库名;</span><br></pre></td></tr></table></figure>
-<h4 id="创建一张表格"><a href="#创建一张表格" class="headerlink" title="创建一张表格"></a>创建一张表格</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE table_name(</span><br><span class="line">   id INT UNSIGNED AUTO_INCREMENT  PRIMARY KEY, </span><br><span class="line">   title VARCHAR(100) NOT NULL,</span><br><span class="line">   author VARCHAR(40) NOT NULL,</span><br><span class="line">   date DATE</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<h4 id="mysql-增删改查"><a href="#mysql-增删改查" class="headerlink" title="mysql 增删改查"></a>mysql 增删改查</h4><ol>
-<li><p>新增一条数据<br><code>INSERT INTO table_name ( 列1, 列2 ) VALUES ( value1, value2 );</code></p>
-</li>
-<li><p>更新一条数据<br><code>UPDATE table_name SET 列名 = &#39;values&#39;,列名 = &#39;values&#39; WHERE 列名 = VALUES;</code></p>
-</li>
-<li><p>删除数据库，删除表，删除一条数据</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DROP DATABASE 库名;</span><br><span class="line">DROP TABLE 表名;</span><br><span class="line">DELETE FROM 表名 WHERE 限制条件;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>修改表结构<br>① 新增一列<br><code>ALTER TABLE 表名 ADD 列名  列类型;</code><br>② 修改表名<br><code>ALTER TABLE 表名 rename 表名;</code><br>③ 修改列名<br><code>ALTER TABLE 表名 modify 列名 列类型;</code></p>
-</li>
-<li><p>查询</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT  * FROM 表名;</span><br><span class="line">SELECT 列名,列名 FROM 表名;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>① 指定条件查询<br><code>SELECT * FROM 表名 WHERE 列名 = &#39;&#39;;</code></p>
-<p>② 按序列查询<br><code>SELECT * FROM 表名 ORDER BY uid DESC;  #DESC 倒序, ASC 顺序;</code></p>
-<p>③ 按区间查询<br><code>SELECT * FROM 表名 WHERE uid BETWEEN 2 AND 4;</code></p>
-<p>④ like 模糊查询<br><code>SELECT * FROM 表名 WHERE uname LIKE &quot;%ha%&quot;;</code></p>
-<p>⑤ or 多条件查询<br><code>SELECT * FROM 表名 WHERE uid = 2 or uid = 4;</code></p>
-<p>⑥ group by 分组查询<br><code>SELECT max(salary),gender FROM 表名 GROUP BY gender;</code></p>
-<h4 id="聚合函数"><a href="#聚合函数" class="headerlink" title="聚合函数"></a>聚合函数</h4><p>max(),min(),sum(),avg() </p>
-<h4 id="完美解决乱码问题"><a href="#完美解决乱码问题" class="headerlink" title="完美解决乱码问题"></a>完美解决乱码问题</h4><ol>
-<li>首行set names utf8</li>
-<li>create database 库名 charset = utf8;</li>
-<li>cmd 命令行 source 拖拽 mysql 文件</li>
-<li>set charset gbk</li>
-<li>查询</li>
-</ol>
-<h4 id="mysql-环境变量设置"><a href="#mysql-环境变量设置" class="headerlink" title="mysql 环境变量设置"></a>mysql 环境变量设置</h4><ol>
-<li>windows + e , 打开文件夹资源管理器</li>
-<li>空白处右键属性 , 找到高级系统设置</li>
-<li>配置环境变量</li>
-<li>找到 系统 path 属性</li>
-<li>新建环境变量</li>
-<li>粘贴 xampp 安装环境下  mysql/bin 的路径</li>
-</ol>
-<p>如图：<br><img src="/2019/01/03/mysql建库建表/1.png" title="xampp环境变量配置"></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1764,7 +1774,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1777,7 +1787,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>

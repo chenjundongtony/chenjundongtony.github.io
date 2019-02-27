@@ -244,6 +244,322 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenjundong.cn/2019/01/07/js-数据类型/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tony">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tony">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/07/js-数据类型/" itemprop="url">js 隐式转换&强制转换</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-07T14:26:17+08:00">
+                2019-01-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/01/07/js-数据类型/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/01/07/js-数据类型/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="js-数据类型分类"><a href="#js-数据类型分类" class="headerlink" title="js 数据类型分类"></a>js 数据类型分类</h4><p>js数据类型分为原始类型 和 引用类型，原始类型也被称为值类型</p>
+<h2 id="值类型"><a href="#值类型" class="headerlink" title="值类型"></a>值类型</h2><p>字符串(String)、数字(Number)、布尔(Boolean)、空(Null)、未定义(Undefined)</p>
+<h2 id="引用数据类型"><a href="#引用数据类型" class="headerlink" title="引用数据类型"></a>引用数据类型</h2><font color="red" style="background-color: #EAEAEA;">对象(Object)、数组(Array)、函数(Function)</font>
+
+<h4 id="强制转换"><a href="#强制转换" class="headerlink" title="强制转换"></a>强制转换</h4><p>① <font color="red">Number()</font>  // 强制转换为nubmer<br>② <font color="red">String()</font>  // 强制转换为string<br>③ <font color="red">Boolean()</font> // 强制转换为boolean</p>
+<h4 id="隐式转换"><a href="#隐式转换" class="headerlink" title="隐式转换"></a>隐式转换</h4><p>JavaScript的数据类型分为六种：<br>分别为null,undefined,boolean,string,number,object<br>object是引用类型，其它的五种是基本类型或者是原始类型<br>我们可以用typeof方法打印来某个是属于哪个类型</p>
+<p>EG:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span>(<span class="string">'123'</span>))  <span class="comment">// 输出string</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span>(<span class="number">123</span>))    <span class="comment">// 输出number</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span>(<span class="literal">false</span>))  <span class="comment">// 输出boolean</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="运算规则"><a href="#运算规则" class="headerlink" title="运算规则"></a>运算规则</h4><p>① <font color="red"> + </font> 号 字符串与数字拼接  转为string<br>② <fnot color="red"> + </fnot> 号 字符串与非数字拼接 转为string<br>③ <font color="red"> - </font> 号 字符串与数字拼接  转为number<br>④ <font color="red"> - </font> 号 字符串与非数字拼接 转为 number</p>
+<p>⑤ <font color="red"> -  </font>  与非纯数字拼接 返回 NaN</p>
+<h4 id="运算"><a href="#运算" class="headerlink" title="== 运算"></a>== 运算</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log( <span class="literal">null</span> == <span class="literal">undefined</span> )  <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log( <span class="literal">null</span> == <span class="number">0</span> )  <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log( <span class="literal">false</span> == <span class="number">0</span> )  <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log( <span class="literal">null</span> == <span class="literal">false</span> ) <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log( <span class="literal">undefined</span> == <span class="literal">false</span> ) <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log( <span class="literal">NaN</span> == <span class="literal">NaN</span> ) <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log( <span class="literal">undefined</span> == <span class="number">0</span> ) <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenjundong.cn/2019/01/03/mysql建库建表/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tony">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tony">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/03/mysql建库建表/" itemprop="url">mysql建库建表</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-03T16:59:08+08:00">
+                2019-01-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/01/03/mysql建库建表/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/01/03/mysql建库建表/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p> 数据库（Database）是按照数据结构来组织、存储和管理数据的仓库，<br>每个数据库都有一个或多个不同的API用于创建，访问，管理，搜索和复制所保存的数据。</p>
+<p><font color="red">mysql</font> 数据库具有以下特点：</p>
+<ol>
+<li>数据以表格的形式出现</li>
+<li>每行为各种记录名称</li>
+<li>每列为记录名称所对应的数据域</li>
+<li>许多的行和列组成一张表单</li>
+<li>若干的表单组成database</li>
+</ol>
+<h4 id="创建完整数据库"><a href="#创建完整数据库" class="headerlink" title="创建完整数据库"></a>创建完整数据库</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 设置字符编码</span><br><span class="line">SET NAMES UTF8;</span><br><span class="line"># 如果数据库已经存在 丢弃</span><br><span class="line">DROP DATABASE IF EXISTS 库名;</span><br><span class="line"># 创建数据库 规定字符集</span><br><span class="line">CREATE DATABASE 数据库名 CHARSET = UTF8;</span><br><span class="line"># 使用此数据库</span><br><span class="line">USE 库名;</span><br></pre></td></tr></table></figure>
+<h4 id="创建一张表格"><a href="#创建一张表格" class="headerlink" title="创建一张表格"></a>创建一张表格</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE table_name(</span><br><span class="line">   id INT UNSIGNED AUTO_INCREMENT  PRIMARY KEY, </span><br><span class="line">   title VARCHAR(100) NOT NULL,</span><br><span class="line">   author VARCHAR(40) NOT NULL,</span><br><span class="line">   date DATE</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h4 id="mysql-增删改查"><a href="#mysql-增删改查" class="headerlink" title="mysql 增删改查"></a>mysql 增删改查</h4><ol>
+<li><p>新增一条数据<br><code>INSERT INTO table_name ( 列1, 列2 ) VALUES ( value1, value2 );</code></p>
+</li>
+<li><p>更新一条数据<br><code>UPDATE table_name SET 列名 = &#39;values&#39;,列名 = &#39;values&#39; WHERE 列名 = VALUES;</code></p>
+</li>
+<li><p>删除数据库，删除表，删除一条数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DROP DATABASE 库名;</span><br><span class="line">DROP TABLE 表名;</span><br><span class="line">DELETE FROM 表名 WHERE 限制条件;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改表结构<br>① 新增一列<br><code>ALTER TABLE 表名 ADD 列名  列类型;</code><br>② 修改表名<br><code>ALTER TABLE 表名 rename 表名;</code><br>③ 修改列名<br><code>ALTER TABLE 表名 modify 列名 列类型;</code></p>
+</li>
+<li><p>查询</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT  * FROM 表名;</span><br><span class="line">SELECT 列名,列名 FROM 表名;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>① 指定条件查询<br><code>SELECT * FROM 表名 WHERE 列名 = &#39;&#39;;</code></p>
+<p>② 按序列查询<br><code>SELECT * FROM 表名 ORDER BY uid DESC;  #DESC 倒序, ASC 顺序;</code></p>
+<p>③ 按区间查询<br><code>SELECT * FROM 表名 WHERE uid BETWEEN 2 AND 4;</code></p>
+<p>④ like 模糊查询<br><code>SELECT * FROM 表名 WHERE uname LIKE &quot;%ha%&quot;;</code></p>
+<p>⑤ or 多条件查询<br><code>SELECT * FROM 表名 WHERE uid = 2 or uid = 4;</code></p>
+<p>⑥ group by 分组查询<br><code>SELECT max(salary),gender FROM 表名 GROUP BY gender;</code></p>
+<h4 id="聚合函数"><a href="#聚合函数" class="headerlink" title="聚合函数"></a>聚合函数</h4><p>max(),min(),sum(),avg() </p>
+<h4 id="完美解决乱码问题"><a href="#完美解决乱码问题" class="headerlink" title="完美解决乱码问题"></a>完美解决乱码问题</h4><ol>
+<li>首行set names utf8</li>
+<li>create database 库名 charset = utf8;</li>
+<li>cmd 命令行 source 拖拽 mysql 文件</li>
+<li>set charset gbk</li>
+<li>查询</li>
+</ol>
+<h4 id="mysql-环境变量设置"><a href="#mysql-环境变量设置" class="headerlink" title="mysql 环境变量设置"></a>mysql 环境变量设置</h4><ol>
+<li>windows + e , 打开文件夹资源管理器</li>
+<li>空白处右键属性 , 找到高级系统设置</li>
+<li>配置环境变量</li>
+<li>找到 系统 path 属性</li>
+<li>新建环境变量</li>
+<li>粘贴 xampp 安装环境下  mysql/bin 的路径</li>
+</ol>
+<p>如图：<br><img src="/2019/01/03/mysql建库建表/1.png" title="xampp环境变量配置"></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.chenjundong.cn/2018/12/26/express-cors-跨域/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1310,287 +1626,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.chenjundong.cn/2018/07/18/vue-cli-axios-百度搜索引擎接口调调用—用—实现搜索功能/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Tony">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Tony">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/18/vue-cli-axios-百度搜索引擎接口调调用—用—实现搜索功能/" itemprop="url">vue-cli+axios+百度搜索引擎接口调调用_实现搜索功能(踩坑)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-18T16:02:11+08:00">
-                2018-07-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/07/18/vue-cli-axios-百度搜索引擎接口调调用—用—实现搜索功能/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/07/18/vue-cli-axios-百度搜索引擎接口调调用—用—实现搜索功能/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h4 id="vue-search-小案例"><a href="#vue-search-小案例" class="headerlink" title="vue_search 小案例"></a>vue_search 小案例</h4><p><strong>实现方式</strong></p>
-<h6 id="使用-vue-cli-webpack-axios-实现调用-百度搜索引擎接口"><a href="#使用-vue-cli-webpack-axios-实现调用-百度搜索引擎接口" class="headerlink" title="使用 vue-cli + webpack + axios  实现调用 百度搜索引擎接口"></a>使用 vue-cli + webpack + axios  实现调用 百度搜索引擎接口</h6><font color="red">重点： 使用 axios http 跨域请求、webpack 配置 跨域请求设置</font> 
-
-<h6 id="首先要踩的几个坑："><a href="#首先要踩的几个坑：" class="headerlink" title="首先要踩的几个坑："></a>首先要踩的几个坑：</h6><h2 id="注意eslint-语法规范"><a href="#注意eslint-语法规范" class="headerlink" title="注意eslint 语法规范"></a>注意eslint 语法规范</h2><h4 id="第一步"><a href="#第一步" class="headerlink" title="第一步."></a>第一步.</h4><ol>
-<li>vue-cli 项目初始化  vue init webpack vue_search</li>
-<li>注意 eslint \ vue-router \ npm install 的安装使用</li>
-<li>安装 插件库 axios —&gt; 基于 http 协议  npm install –save-dev</li>
-<li>如图：<img src="/2018/07/18/vue-cli-axios-百度搜索引擎接口调调用—用—实现搜索功能/1.png" title="安装依赖">
-</li>
-</ol>
-<h4 id="第二步"><a href="#第二步" class="headerlink" title="第二步."></a>第二步.</h4><p>文件夹路径 cd 进入时， 大小写一定要注意，否则 <font color="red">eslint 警告</font></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/07/18/vue-cli-axios-百度搜索引擎接口调调用—用—实现搜索功能/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.chenjundong.cn/2018/06/26/valine体体验-开启评论系统/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Tony">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Tony">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/26/valine体体验-开启评论系统/" itemprop="url">valine体验--开启评论系统</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-26T22:57:46+08:00">
-                2018-06-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/06/26/valine体体验-开启评论系统/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/06/26/valine体体验-开启评论系统/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>hexo 作为静态博客很受欢迎,除了可以应该用github上大量主题之外<br>还可以开启友链、打赏、评论等互动功能</p>
-<p>hexo 搭载了众多可使用的评论系统,如：</p>
-<p><font color="red">畅言,多说,有言,disqus…等等</font><br>目前本博客使用 <font color="red"><strong>valine</strong></font> 评论系统<br>原因有三：<br>    1.轻量级<br>    2.注册快捷<br>    3.简单优雅大方 markdown语法支持<br>    4.官方解释：Leancloud的快速、简洁且高效的无后端评论系统</p>
-<p>这里放出链接 <a href="https://valine.js.org/" target="_blank" rel="noopener">valine</a></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/06/26/valine体体验-开启评论系统/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1641,7 +1676,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1654,7 +1689,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
