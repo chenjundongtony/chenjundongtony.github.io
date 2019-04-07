@@ -244,6 +244,166 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.chenjundong.cn/2019/04/07/如何实现一个深拷贝/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tony">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tony">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/07/如何实现一个深拷贝/" itemprop="url">如何实现一个深拷贝</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-07T09:24:00+08:00">
+                2019-04-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/04/07/如何实现一个深拷贝/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/04/07/如何实现一个深拷贝/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="如何实现一个深拷贝"><a href="#如何实现一个深拷贝" class="headerlink" title="如何实现一个深拷贝"></a>如何实现一个深拷贝</h1><h2 id="简单实现"><a href="#简单实现" class="headerlink" title="简单实现"></a>简单实现</h2><p>深拷贝可以拆分成 2 步，浅拷贝 + 递归，浅拷贝时判断属性值是否是对象，如果是对象就进行递归操作，两个一结合就实现了深拷贝。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">// 浅拷贝的实现</span><br><span class="line">function cloneShallow(source) &#123;</span><br><span class="line">    var target = &#123;&#125;;</span><br><span class="line">    for (var key in source) &#123;</span><br><span class="line">        if (Object.prototype.hasOwnProperty.call(source, key)) &#123;</span><br><span class="line">            target[key] = source[key];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return target;</span><br><span class="line">&#125;</span><br><span class="line">var a = &#123;</span><br><span class="line">    name: &quot;Tony&quot;,</span><br><span class="line">    book: &#123;</span><br><span class="line">        title: &quot;Let me think&quot;,</span><br><span class="line">        price: &quot;50&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    a1: undefined,</span><br><span class="line">    a2: null,</span><br><span class="line">    a3: 123</span><br><span class="line">&#125;</span><br><span class="line">var b = cloneShallow(a);</span><br><span class="line"></span><br><span class="line">a.name = &quot;前端进阶&quot;;</span><br><span class="line">a.book.price = &quot;55&quot;;</span><br><span class="line">console.log(a);</span><br><span class="line">// &#123; name: &apos;前端进阶&apos;,</span><br><span class="line">//   book: &#123; title: &apos;Let me think&apos;, price: &apos;55&apos; &#125;,</span><br><span class="line">//   a1: undefined,</span><br><span class="line">//   a2: null,</span><br><span class="line">//   a3: 123 &#125;</span><br><span class="line"></span><br><span class="line">console.log(b);</span><br><span class="line"></span><br><span class="line">// &#123; name: &apos;Tony&apos;,</span><br><span class="line">//   book: &#123; title: &apos;Let me think&apos;, price: &apos;55&apos; &#125;,</span><br><span class="line">//   a1: undefined,</span><br><span class="line">//   a2: null,</span><br><span class="line">//   a3: 123 &#125;</span><br></pre></td></tr></table></figure></p>
+<p>以上代码是浅拷贝实现，只要稍微改动下，加上是否是对象的判断并在相应的位置使用递归就可以实现简单深拷贝。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function cloneDeep1(source) &#123;</span><br><span class="line">    var target = &#123;&#125;;</span><br><span class="line">    for(var key in source) &#123;</span><br><span class="line">        if (Object.prototype.hasOwnProperty.call(source, key)) &#123;</span><br><span class="line">            if (typeof source[key] === &apos;object&apos;) &#123;</span><br><span class="line">                target[key] = cloneDeep1(source[key]); // 注意这里</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                target[key] = source[key];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return target;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var b = cloneDeep1(a);</span><br><span class="line">console.log(b);</span><br></pre></td></tr></table></figure>
+<p><strong>一个简单的深拷贝就完成了，但是这个实现还存在很多问题。</strong></p>
+<p>1.没有对传入参数进行校验，传入 null 时应该返回 null 而不是 {}<br>2.对于对象的判断逻辑不严谨，因为 typeof null === ‘object’<br>3.没有考虑数组的兼容</p>
+<h2 id="拷贝数组"><a href="#拷贝数组" class="headerlink" title="拷贝数组"></a>拷贝数组</h2><p>下面，我们来看一下对于对象的判断，判断方案如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function isObject(obj) &#123;</span><br><span class="line">    return Object.prototype.toString.call(obj) === &apos;[object Object]&apos;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但是用在这里并不合适，因为我们要保留数组这种情况，所以这里使用 typeof 来处理。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">typeof null //&quot;object&quot;</span><br><span class="line">typeof &#123;&#125; //&quot;object&quot;</span><br><span class="line">typeof [] //&quot;object&quot;</span><br><span class="line">typeof function foo()&#123;&#125; //&quot;function&quot; (特殊情况)</span><br></pre></td></tr></table></figure>
+<p>改动过后的 isObject 函数为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function isObject(obj) &#123;</span><br><span class="line">    return typeof obj === &apos;object&apos; &amp;&amp; obj != null;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>所以兼容数组的写法如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">function cloneDeep2(source) &#123;</span><br><span class="line"></span><br><span class="line">    if (!isObject(source)) return source; // 非对象返回自身</span><br><span class="line"></span><br><span class="line">    var target = Array.isArray(source) ? [] : &#123;&#125;;</span><br><span class="line">    for(var key in source) &#123;</span><br><span class="line">        if (Object.prototype.hasOwnProperty.call(source, key)) &#123;</span><br><span class="line">            if (isObject(source[key])) &#123;</span><br><span class="line">                target[key] = cloneDeep2(source[key]); // 注意这里</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                target[key] = source[key];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return target;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var b = cloneDeep2(a);</span><br><span class="line">console.log(b);</span><br></pre></td></tr></table></figure>
+<h2 id="循环引用"><a href="#循环引用" class="headerlink" title="循环引用"></a>循环引用</h2><p>我们知道 JSON 无法深拷贝循环引用，遇到这种情况会抛出异常</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a.circleRef = a;</span><br><span class="line">JSON.parse(JSON.stringify(a));</span><br><span class="line">// TypeError: Converting circular structure to JSON</span><br></pre></td></tr></table></figure>
+<p><strong>1.使用哈希表</strong></p>
+<p>解决方案很简单，其实就是循环检测，我们设置一个数组或者哈希表存储已拷贝过的对象，当检测到当前对象已存在于哈希表中时，取出该值并返回即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">function cloneDeep3(source, hash = new WeakMap()) &#123;</span><br><span class="line"></span><br><span class="line">    if (!isObject(source)) return source; </span><br><span class="line">    if (hash.has(source)) return hash.get(source); // 新增代码，查哈希表</span><br><span class="line"></span><br><span class="line">    var target = Array.isArray(source) ? [] : &#123;&#125;;</span><br><span class="line">    hash.set(source, target); // 新增代码，哈希表设值</span><br><span class="line"></span><br><span class="line">    for(var key in source) &#123;</span><br><span class="line">        if (Object.prototype.hasOwnProperty.call(source, key)) &#123;</span><br><span class="line">            if (isObject(source[key])) &#123;</span><br><span class="line">                target[key] = cloneDeep3(source[key], hash); // 新增代码，传入哈希表</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                target[key] = source[key];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return target;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>测试一下，看看效果如何？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">a.circleRef = a;</span><br><span class="line"></span><br><span class="line">var b = cloneDeep3(a);</span><br><span class="line">console.log(b);</span><br><span class="line">// &#123;</span><br><span class="line">//     name: &quot;muyiy&quot;,</span><br><span class="line">//     a1: undefined,</span><br><span class="line">//    a2: null,</span><br><span class="line">//     a3: 123,</span><br><span class="line">//     book: &#123;title: &quot;You Don&apos;t Know JS&quot;, price: &quot;45&quot;&#125;,</span><br><span class="line">//     circleRef: &#123;name: &quot;muyiy&quot;, book: &#123;…&#125;, a1: undefined, a2: null, a3: 123, …&#125;</span><br><span class="line">// &#125;</span><br></pre></td></tr></table></figure>
+<p><strong>2.使用数组</strong></p>
+<p>这里使用了ES6 中的 WeakMap 来处理，那在 ES5 下应该如何处理呢？</p>
+<p>也很简单，使用数组来处理就好啦，代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">function cloneDeep3(source, uniqueList) &#123;</span><br><span class="line"></span><br><span class="line">    if (!isObject(source)) return source; </span><br><span class="line">    if (!uniqueList) uniqueList = []; // 新增代码，初始化数组</span><br><span class="line"></span><br><span class="line">    var target = Array.isArray(source) ? [] : &#123;&#125;;</span><br><span class="line"></span><br><span class="line">    // ============= 新增代码</span><br><span class="line">    // 数据已经存在，返回保存的数据</span><br><span class="line">    var uniqueData = find(uniqueList, source);</span><br><span class="line">    if (uniqueData) &#123;</span><br><span class="line">        return uniqueData.target;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    // 数据不存在，保存源数据，以及对应的引用</span><br><span class="line">    uniqueList.push(&#123;</span><br><span class="line">        source: source,</span><br><span class="line">        target: target</span><br><span class="line">    &#125;);</span><br><span class="line">    // =============</span><br><span class="line"></span><br><span class="line">    for(var key in source) &#123;</span><br><span class="line">        if (Object.prototype.hasOwnProperty.call(source, key)) &#123;</span><br><span class="line">            if (isObject(source[key])) &#123;</span><br><span class="line">                target[key] = cloneDeep3(source[key], uniqueList); // 新增代码，传入数组</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                target[key] = source[key];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return target;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 新增方法，用于查找</span><br><span class="line">function find(arr, item) &#123;</span><br><span class="line">    for(var i = 0; i &lt; arr.length; i++) &#123;</span><br><span class="line">        if (arr[i].source === item) &#123;</span><br><span class="line">            return arr[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return null;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 用上面测试用例已测试通过</span><br></pre></td></tr></table></figure>
+<p>现在已经很完美的解决了循环引用这种情况，那其实还是一种情况是引用丢失，我们看下面的例子:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var obj1 = &#123;&#125;;</span><br><span class="line">var obj2 = &#123;a: obj1, b: obj1&#125;;</span><br><span class="line"></span><br><span class="line">obj2.a === obj2.b; </span><br><span class="line">// true</span><br><span class="line"></span><br><span class="line">var obj3 = cloneDeep2(obj2);</span><br><span class="line">obj3.a === obj3.b; </span><br><span class="line">// false</span><br></pre></td></tr></table></figure>
+<p>引用丢失在某些情况下是有问题的，比如上面的对象 obj2，obj2 的键值 a 和 b 同时引用了同一个对象 obj1，使用 cloneDeep2 进行深拷贝后就丢失了引用关系变成了两个不同的对象，那如何处理呢。</p>
+<p>其实你有没有发现，我们的 cloneDeep3 已经解决了这个问题，因为只要存储已拷贝过的对象就可以了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var obj3 = cloneDeep3(obj2);</span><br><span class="line">obj3.a === obj3.b; </span><br><span class="line">// true</span><br></pre></td></tr></table></figure>
+<p><strong>详细链接如下：</strong></p>
+<p><a href="https://mp.weixin.qq.com/s/q0_muijFLYMBpuvQfSc36A" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/q0_muijFLYMBpuvQfSc36A</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.chenjundong.cn/2019/02/27/前端如何优化网站性能/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1589,141 +1749,6 @@ ViewModel：负责监听Model中数据的改变并且控制视图的更新，处
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.chenjundong.cn/2019/01/08/http-状态响应码：200、301、302、304、400、405、500/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Tony">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Tony">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/08/http-状态响应码：200、301、302、304、400、405、500/" itemprop="url">常见的 http 状态响应码：200、301、302、304、400、405、500</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-08T15:06:04+08:00">
-                2019-01-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/01/08/http-状态响应码：200、301、302、304、400、405、500/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/01/08/http-状态响应码：200、301、302、304、400、405、500/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>前端常见的 http 请求状态码：200、304、404、500.</p>
-<h4 id="1xx-临时响应"><a href="#1xx-临时响应" class="headerlink" title="1xx 临时响应"></a>1xx 临时响应</h4><p>表示 临时响应, 需要请求者继续操作</p>
-<h4 id="2xx成功"><a href="#2xx成功" class="headerlink" title="2xx成功"></a>2xx成功</h4><p>200 服务器已经成功处理了请求</p>
-<h4 id="xxx-重定向"><a href="#xxx-重定向" class="headerlink" title="xxx 重定向"></a>xxx 重定向</h4><p>301 (永久移动) 请求的网页已永久移动到新的位置, (get 或 head 请求时), 会自动将请求转到新位置<br>302 (临时移动) 服务器目前从不同位置的网页响应, 但请求应继续使用原有位置进行以后的请求<br>304 (未修改) 距离上次请求后, 请求的网页未修改, 服务器返回此响应</p>
-<h4 id="4xx-请求错误"><a href="#4xx-请求错误" class="headerlink" title="4xx 请求错误"></a>4xx 请求错误</h4><p>400 (错误请求) 服务器不理解请求的语法<br>401 (未授权) 请求要求身份验证<br>403 (禁止) 服务器拒绝请求<br>404 (未找到) 服务器找不到需要请求的资源<br>405 (方法禁用) 禁用请求中指定的方法</p>
-<h4 id="5xx-服务器错误"><a href="#5xx-服务器错误" class="headerlink" title="5xx 服务器错误"></a>5xx 服务器错误</h4><p>500 (服务器内部错误) 服务器遇到错误, 无法完成请求<br>501 (尚未实施) 服务器不具备完成请求的功能, 如：无法识别请求方法<br>504 (网关超时) 服务器作为网关或代理, 未及时从上游服务器收到请求<br>505 (http 版本不支持) 服务器不支持请求中所用的 http协议版本</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1774,7 +1799,7 @@ ViewModel：负责监听Model中数据的改变并且控制视图的更新，处
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1787,7 +1812,7 @@ ViewModel：负责监听Model中数据的改变并且控制视图的更新，处
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">35</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
